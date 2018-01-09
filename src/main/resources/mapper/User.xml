@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.UserDao">
+
+    <!-- 这里的id就是接口中方法的名称 -->
+    <select id="getInfoById" resultType="com.entity.User" parameterType="long">
+      SELECT *
+      FROM tbk_user
+      where u_id = #{userId}
+    </select>
+
+    <select id="userLogin" resultType="com.entity.User">
+      SELECT *
+      FROM tbk_user
+      where username = #{0}
+      AND
+      userpass = #{1}
+    </select>
+</mapper>

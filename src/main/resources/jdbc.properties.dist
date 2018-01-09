@@ -1,0 +1,5 @@
+jdbc.driverClassName = com.mysql.jdbc.Driver
+jdbc.url             = jdbc:mysql://ip:3306/database?useUnicode=true&characterEncoding=utf-8
+jdbc.username        =
+jdbc.password        =
+jdbc.filters         = wall,stat,config
