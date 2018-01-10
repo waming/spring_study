@@ -20,6 +20,7 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+
         <!-- 添加Spring依赖的jar包-->
         <!--依赖注入包-->
         <dependency>
@@ -201,10 +202,8 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>3.1.0</version>
         </dependency>
-
     </dependencies>
   <build>
     <finalName>work</finalName>
   </build>
-
 </project>

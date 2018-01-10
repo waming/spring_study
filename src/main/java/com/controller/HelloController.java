@@ -27,10 +27,8 @@ public class HelloController {
     @RequestMapping("/hello")
     public String hello(String username, Model model) {
         model.addAttribute("username", username);
+        model.addAttribute("message", "hello,world");
         System.out.println(userService.setUser());
-        logger.info("请求登录");
-        logger.debug("debug");
-        logger.warn("warn");
         return "index";
     }
 
