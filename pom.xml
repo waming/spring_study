@@ -162,6 +162,11 @@
             <artifactId>druid</artifactId>
             <version>0.2.26</version>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.44</version>
+        </dependency>
 
         <!--mybatis实现与spring整合-->
         <!--Mybatis核心包-->
