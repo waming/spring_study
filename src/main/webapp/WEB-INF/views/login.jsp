@@ -6,10 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html>
 <head>
-
+    <c:import url="master/public/static.jsp" />
     <title>后台登录</title>
     <meta name="keywords" content="H-ui.admin v2.3,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
     <meta name="description" content="H-ui.admin v2.3，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
@@ -19,17 +20,17 @@
 <div class="header"></div>
 <div class="loginWraper">
     <div id="loginform" class="loginBox">
-        <form id="login" class="form form-horizontal" action="index.html" method="post">
+        <form id="login" class="form form-horizontal" method="post">
             <div class="row cl">
                 <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
                 <div class="formControls col-xs-8">
-                    <input id="" name="username" type="text" placeholder="账户" class="input-text size-L">
+                    <input name="username" type="text" placeholder="账户" class="input-text size-L">
                 </div>
             </div>
             <div class="row cl">
                 <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
                 <div class="formControls col-xs-8">
-                    <input id="" name="userpass" type="password" placeholder="密码" class="input-text size-L">
+                    <input name="userpass" type="password" placeholder="密码" class="input-text size-L">
                 </div>
             </div>
             <!--       <div class="row cl">
@@ -54,18 +55,18 @@
     </div>
 </div>
 <div class="footer">Copyright 易沙网络</div>
-<script type="text/javascript" src="<?php echo PUBLIC_MASTER; ?>lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="<?php echo PUBLIC_MASTER; ?>static/h-ui/js/H-ui.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/h-ui/js/H-ui.js"></script>
 <script>
     $(function () {
         $("#btn_login").click(function(){
             var str = '';
             var formData = $("#login").serialize();
-            $.post('/master/home/login',formData , function(data){
+            $.post('${pageContext.request.contextPath}/dologin/',formData , function(data){
                 if(data.code != 0){
                     alert(data.message);
                 }else{
-                    window.location.href="/master/manage/index";
+                    window.location.href="${pageContext.request.contextPath}/user/index";
                 }
             },"json");
         });
