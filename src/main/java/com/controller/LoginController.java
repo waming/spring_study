@@ -17,11 +17,11 @@ public class LoginController {
     @RequestMapping(value = "/dologin", method = RequestMethod.POST)
     public @ResponseBody User doLogin(User post_user)
     {
+
+
+
         User userresult = userService.getUser(post_user.getUsername(), post_user.getUserpass());
         //System.out.println(userresult);
-
-
-
 
         return userresult;
     }

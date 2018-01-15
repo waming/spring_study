@@ -23,6 +23,16 @@
     <context:component-scan base-package="com.controller" />
     <context:component-scan base-package="com.service"/>
 
+    <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+        <property name="validationMessageSource" ref="validatemessageSource" />
+    </bean>
+
+    <bean id="validatemessageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="fileEncodings" value="utf-8"/>
+        <property name="cacheSeconds" value="120"/>
+    </bean>
+
     <!-- 视图解释类-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/" />
