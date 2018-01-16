@@ -11,7 +11,6 @@ public class IndexController {
     public String index(Model model)
     {
         model.addAttribute("message", "hello，world");
-        System.out.println("test,test,test");
         return "/index";
     }
 }

@@ -20,7 +20,7 @@
 <div class="header"></div>
 <div class="loginWraper">
     <div id="loginform" class="loginBox">
-        <form id="login" class="form form-horizontal" method="post">
+        <form id="login" class="form form-horizontal">
             <div class="row cl">
                 <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
                 <div class="formControls col-xs-8">
@@ -62,6 +62,7 @@
         $("#btn_login").click(function(){
             var str = '';
             var formData = $("#login").serialize();
+
             $.post('${pageContext.request.contextPath}/dologin/',formData , function(data){
                 if(data.code != 0){
                     alert(data.message);

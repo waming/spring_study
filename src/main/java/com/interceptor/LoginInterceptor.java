@@ -24,7 +24,9 @@ public class LoginInterceptor implements HandlerInterceptor{
         }
 
         //不符合条件的，跳转到登录界面
-        request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+        //request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+
+        response.sendRedirect(request.getContextPath()+"/login");
 
         return false;
     }
