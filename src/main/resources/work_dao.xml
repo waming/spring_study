@@ -56,6 +56,22 @@
 
         <!--密码加密-->
         <property name="connectionProperties" value="config.decrypt=true;"/>
+        
+        <property name="timeBetweenLogStatsMillis" value="60"/>
+
+        <!--配置日志信息-->
+        <property name="proxyFilters">
+            <list>
+                <ref bean="log-filter" />
+            </list>
+        </property>
+    </bean>
+
+    <bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4j2Filter">
+        <property name="statementExecutableSqlLogEnable" value="true" />
+        <property name="resultSetLogEnabled" value="true" />
+        <property name="connectionLogEnabled" value="false"/>
+        <property name="statementLogEnabled" value="false"/>
     </bean>
 
     <!-- 在使用mybatis时 spring使用sqlsessionFactoryBean 来管理mybatis的sqlsessionFactory -->
@@ -82,7 +98,7 @@
 
     <!--配置事务管理器-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"></property>
+        <property name="dataSource" ref="dataSource" />
     </bean>
 
     <!-- 声明式事务,配置基于注解的声明式服务 -->

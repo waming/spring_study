@@ -4,7 +4,7 @@
 <configuration status="warn">
 
     <properties>
-        <property name="LOG_HOME">${web:rootDir}/logs</property>
+        <property name="LOG_HOME">${web:rootDir}/WEB-INF</property>
         <property name="FILE_NAME">likR</property>
     </properties>
 
@@ -12,6 +12,19 @@
         <console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
         </console>
+
+        <RollingFile name="RollingFileDebug" fileName="${LOG_HOME}/logs/debug.log"
+                     filePattern="${LOG_HOME}/$${date:yyyy-MM}/debug-%d{yyyy-MM-dd}-%i.log">
+            <Filters>
+                <ThresholdFilter level="DEBUG" />
+                <ThresholdFilter level="INFO" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+            <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+            </Policies>
+        </RollingFile>
 
         <RollingFile name="RollingFileInfo" fileName="${LOG_HOME}/logs/info.log"
                      filePattern="${LOG_HOME}/$${date:yyyy-MM}/info-%d{yyyy-MM-dd}-%i.log">
@@ -22,7 +35,7 @@
             <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy/>
-                <SizeBasedTriggeringPolicy size="100 MB"/>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
             </Policies>
         </RollingFile>
 
@@ -35,7 +48,7 @@
             <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy/>
-                <SizeBasedTriggeringPolicy size="100 MB"/>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
             </Policies>
         </RollingFile>
 
@@ -45,18 +58,19 @@
             <PatternLayout pattern="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy/>
-                <SizeBasedTriggeringPolicy size="100 MB"/>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
             </Policies>
         </RollingFile>
 
     </appenders>
-
     <loggers>
         <!--过滤掉spring和hibernate的一些无用的debug信息-->
-        <logger name="org.springframework" level="INFO">
+        <logger name="org.springframework" level="INFO" />
+        <logger name="org.hibernate" level="INFO" />
+        <logger name="com.alibaba.druid" level="WARN" additivity="false" includeLocation="true">
+            <appender-ref ref="RollingFileWarn" />
         </logger>
-        <logger name="org.hibernate" level="INFO">
-        </logger>
+
         <root level="all">
             <appender-ref ref="Console"/>
             <appender-ref ref="RollingFileInfo"/>
@@ -64,5 +78,4 @@
             <appender-ref ref="RollingFileError"/>
         </root>
     </loggers>
-
 </configuration>
