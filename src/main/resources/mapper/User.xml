@@ -18,4 +18,13 @@
       AND
       userpass = #{1}
     </select>
+
+    <select id="getlist" resultType="com.entity.User">
+        SELECT
+        u_id,role_id,telephone,username,company_name,check_status,create_time
+        FROM tbk_user
+        <if test="offset != null and limit != null">
+            LIMIT #{limit, jdbcType=INTEGER}, #{offset, jdbcType=INTEGER}
+        </if>
+    </select>
 </mapper>

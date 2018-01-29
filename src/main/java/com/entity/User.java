@@ -1,5 +1,9 @@
 package com.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+
 public class User {
 
     private long u_id;
@@ -10,8 +14,12 @@ public class User {
     private String company_name;
     private Integer check_status;
     private String source;
-    private String update_time;
-    private String create_time;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date update_time;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date create_time;
 
     public long getU_id() {
         return u_id;
@@ -77,19 +85,19 @@ public class User {
         this.source = source;
     }
 
-    public String getUpdate_time() {
+    public Date getUpdate_time() {
         return update_time;
     }
 
-    public void setUpdate_time(String update_time) {
+    public void setUpdate_time(Date update_time) {
         this.update_time = update_time;
     }
 
-    public String getCreate_time() {
+    public Date getCreate_time() {
         return create_time;
     }
 
-    public void setCreate_time(String create_time) {
+    public void setCreate_time(Date create_time) {
         this.create_time = create_time;
     }
 

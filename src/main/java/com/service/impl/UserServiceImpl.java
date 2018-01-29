@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -23,5 +25,9 @@ public class UserServiceImpl implements UserService {
 
     public User getUser(String username, String userpass) {
         return userDao.userLogin(username, DigestUtils.md5DigestAsHex(userpass.getBytes()));
+    }
+
+    public List<User> getlist(Integer limit, Integer offset) {
+        return userDao.getlist(limit, offset);
     }
 }

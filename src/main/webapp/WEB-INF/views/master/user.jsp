@@ -55,22 +55,21 @@
                                     </thead>
                                     <tbody>
 
+                                    <c:forEach items= "${users}" var="vo">
                                     <tr class="gradeA">
-                                        <td>123123</td>
-                                        <td>123123</td>
-                                        <td>123123</td>
-                                        <td>123123</td>
-                                        <td>123123</td>
-
+                                        <td>${vo.username}</td>
+                                        <td>${vo.company_name}</td>
+                                        <td>${vo.telephone}</td>
+                                        <td>${vo.create_time}</td>
+                                        <td><c:choose><c:when test="${vo.check_status == 1}">已审核</c:when><c:otherwise>未审核</c:otherwise></c:choose></td>
                                         <td data_id="">
-
                                             <button class="btn btn-primary  btn-sm" id="offUser">停用</button>
                                             <button class="btn btn-success  btn-sm" id="onUser">启用</button>
                                             <a href="/user/edit?id=" class="btn btn-default btn-sm">编辑</a>
                                             <a href="#pwdModal" data-toggle="modal" class="btn btn-warning  btn-sm" data-userid="">改密</a>
                                         </td>
                                     </tr>
-
+                                    </c:forEach>
                                     </tbody>
                                 </table>
 
