@@ -69,7 +69,7 @@
 
     <bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4j2Filter">
         <property name="statementExecutableSqlLogEnable" value="true" />
-        <property name="resultSetLogEnabled" value="true" />
+        <property name="resultSetLogEnabled" value="false" />
         <property name="connectionLogEnabled" value="false"/>
         <property name="statementLogEnabled" value="false"/>
     </bean>
