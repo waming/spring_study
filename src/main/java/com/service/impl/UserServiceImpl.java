@@ -3,10 +3,15 @@ package com.service.impl;
 import com.dao.UserDao;
 import com.entity.User;
 import com.service.UserService;
+import com.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.ParseException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
+import org.springframework.util.StringUtils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -28,6 +33,15 @@ public class UserServiceImpl implements UserService {
     }
 
     public List<User> getlist(Integer limit, Integer offset) {
-        return userDao.getlist(limit, offset);
+
+        List<User> users =  userDao.getlist(limit, offset);
+        if (users!= null){
+
+            for (User user:users) {
+                user.setCreate_time(Utils.timestampToStringDate(user.getCreate_time(), 1));
+            }
+        }
+
+        return users;
     }
 }
