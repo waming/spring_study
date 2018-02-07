@@ -17,17 +17,17 @@ public class Utils {
             return "";
         }
 
+        StringBuffer mBuffer = null;
         try {
-            StringBuffer mBuffer = new StringBuffer(timestamp);
+            mBuffer = new StringBuffer(timestamp);
             mBuffer.append("000");
             SimpleDateFormat bartDateFormat = new SimpleDateFormat(format);
             Date date = new Date();
             long time = Long.valueOf(mBuffer.toString());
             date.setTime(time);
             return bartDateFormat.format(date);
-        } catch (ParseException e )
-        {
-            e.printStackTrace();
+        } catch (Exception e) {
+            //e.printStackTrace();
             return "";
         }
     }
