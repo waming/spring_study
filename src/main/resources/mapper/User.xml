@@ -23,13 +23,14 @@
         SELECT
         u_id,role_id,telephone,username,company_name,check_status,create_time
         FROM tbk_user
-        WHERE 1 = 1
+        <where>
         <if test="map.start_time != null">
-            <![CDATA[ AND create_time >= #{map.start_time} ]]>
+            <![CDATA[ create_time >= #{map.start_time} ]]>
         </if>
         <if test="map.end_time != null">
             <![CDATA[ AND create_time <= #{map.end_time} ]]>
         </if>
+        </where>
         <if test="map.offset != null and map.limit != null">
             LIMIT #{map.limit, jdbcType=INTEGER}, #{map.offset, jdbcType=INTEGER}
         </if>

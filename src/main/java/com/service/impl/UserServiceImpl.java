@@ -40,6 +40,10 @@ public class UserServiceImpl implements UserService {
             map.put("start_time", Utils.dateToTimestamp(map.get("start_time")));
         }
 
+        if (map.get("end_time") != null) {
+            map.put("end_time", Utils.dateToTimestamp(map.get("end_time")));
+        }
+
         List<User> users =  userDao.getlist(map);
         if (users!= null){
 
