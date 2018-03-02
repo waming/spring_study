@@ -32,7 +32,7 @@
         </if>
         </where>
         <if test="map.offset != null and map.limit != null">
-            LIMIT #{map.limit, jdbcType=INTEGER}, #{map.offset, jdbcType=INTEGER}
+            LIMIT ${map.limit}, ${map.offset}
         </if>
     </select>
 </mapper>

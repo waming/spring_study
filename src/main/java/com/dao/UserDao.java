@@ -9,5 +9,5 @@ import java.util.Map;
 public interface UserDao {
     public User getInfoById(long userId);
     public User userLogin(String username, String userpass);
-    public List<User> getlist(@Param(value = "map") Map<String, String> map);
+    public List<User> getlist(@Param(value = "map") Map<String, Object> map);
 }

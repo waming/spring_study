@@ -21,7 +21,7 @@ public class UserController {
 
     @RequestMapping(value = {"", "/", "/index"})
     public String index(
-            @RequestParam Map<String, String>map,
+            @RequestParam Map<String, Object>map,
             Model model)
     {
         List<User> lists = userService.getlist(map);
