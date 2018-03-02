@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/manage/user")
@@ -20,11 +21,10 @@ public class UserController {
 
     @RequestMapping(value = {"", "/", "/index"})
     public String index(
-            @RequestParam(required = false, defaultValue = "0") Integer limit,
-            @RequestParam(required = false, defaultValue = "10") Integer offset,
+            @RequestParam Map<String, String>map,
             Model model)
     {
-        List<User> lists = userService.getlist(limit, offset);
+        List<User> lists = userService.getlist(map);
         model.addAttribute("users", lists);
         return "master/user";
     }

@@ -13,6 +13,7 @@ import org.springframework.util.StringUtils;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -32,13 +33,18 @@ public class UserServiceImpl implements UserService {
         return userDao.userLogin(username, DigestUtils.md5DigestAsHex(userpass.getBytes()));
     }
 
-    public List<User> getlist(Integer limit, Integer offset) {
+    public List<User> getlist(Map<String, String> map) {
 
-        List<User> users =  userDao.getlist(limit, offset);
+        /* 日期搜索 */
+        if (map.get("start_time") != null) {
+            map.put("start_time", Utils.dateToTimestamp(map.get("start_time")));
+        }
+
+        List<User> users =  userDao.getlist(map);
         if (users!= null){
 
-            for (User user:users) {
-                user.setCreate_time(Utils.timestampToStringDate(user.getCreate_time(), 1));
+            for (User u:users) {
+                u.setCreate_time(Utils.timestampToStringDate(u.getCreate_time(), 1));
             }
         }
 

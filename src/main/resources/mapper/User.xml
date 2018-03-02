@@ -19,12 +19,19 @@
       userpass = #{1}
     </select>
 
-    <select id="getlist" resultType="com.entity.User">
+    <select id="getlist" resultType="com.entity.User" parameterType="map">
         SELECT
         u_id,role_id,telephone,username,company_name,check_status,create_time
         FROM tbk_user
-        <if test="offset != null and limit != null">
-            LIMIT #{limit, jdbcType=INTEGER}, #{offset, jdbcType=INTEGER}
+        WHERE 1 = 1
+        <if test="map.start_time != null">
+            <![CDATA[ AND create_time >= #{map.start_time} ]]>
+        </if>
+        <if test="map.end_time != null">
+            <![CDATA[ AND create_time <= #{map.end_time} ]]>
+        </if>
+        <if test="map.offset != null and map.limit != null">
+            LIMIT #{map.limit, jdbcType=INTEGER}, #{map.offset, jdbcType=INTEGER}
         </if>
     </select>
 </mapper>
